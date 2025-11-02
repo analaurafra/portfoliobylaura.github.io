@@ -1,7 +1,7 @@
 # Site-wide settings
 # ------------------
 #
-title: Portifólio By Ana
+title: Portfólio By Laura
 #
 author:
    name: analaurafra
@@ -13,7 +13,7 @@ description: >
   Estudando e praticando soluções digitais.
 
 url: "https://analaurafra.github.io"     # domínio público (sem baseurl)
-baseurl: "/portifoliobylaura.github.io"  # ou "" se for repo user site (analaurafra.github.io)
+baseurl: "/portfoliobylaura.github.io"  # ou "" se for repo user site (analaurafra.github.io)
 # permalink: /:categories/:title/          # opcional: URLs "limpas"
 include:
   - assets  
