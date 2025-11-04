@@ -2,7 +2,7 @@
 layout: post
 ---
 
-##  Projeto: MedCenter - Spring Boot 3 + Java + API REST 
+##  Projeto: MedCenter 
 
 O **Med Center** é uma ferramenta de **CRM (Customer Relationship Management)**, o qual tem como principal a gestão de cadastrado de profissionais da área da saúde, especificamente médicos. 
 
@@ -357,4 +357,112 @@ Para realizar o cadastro de Pacientes, realizamos os passos anteriores, porém, 
 - Execução da aplicação local:
 
 <img src="{{ '/assets/img/img_17_03.png' | relative_url }}" alt="img_17_03"/><br>
+<br>
+
+## Banco de Dados - Validação e Persistência
+
+Nesta aplicação iremos utilizar o Banco de Dado **MySql**. 
+Baixe o mesmo seguindo a documentação : <a href="https://www.alura.com.br/artigos/mysql-instalacao-configuracao" target="_blank"> Instalação - MySQL</a>
+
+
+**Importante**: Antes de seguir é indicado realizar o registro do Mysql nas **Variáveris de Ambiente** da sua máquina: `C:\Program Files\MySQL\MySQL Server 8.0\bin`. Localize o caminho conforme a instalação realizada na sua máquina.
+
+
+<img src="{{ '/assets/img/img_20.png' | relative_url }}" alt="img_20"/><br>
+<br>
+
+
+Para habilitar a aplicação para a realização da Validação e Persistência será necessário incluir novas dependências (módulo de banco de dados, spring data e etc) no arquivo `pom.xml`.
+
+
+Para encontrar as dependências, vá novamente ao site <a href="https://start.spring.io/" target="_blank">Spring Initializr</a> 
+
+> ADD DEPENDENCES --> ADICIONAR DEPENDÊNCIAS --> EXPLORE DEPENDENCIES --> COPIE AS DEPENDÊNCIAS
+
+Nesta ocasição foram adicionas as dependências adicionais abaixo:
+
+- `Validation` - I/O
+- `Spring Data JPA` - SQL
+- `MySQL Driver` - SQL
+- `Flyway Migration SQL` - SQL
+
+
+{% highlight ruby %}
+
+ <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-jpa</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-validation</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.flywaydb</groupId>
+      <artifactId>flyway-core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.flywaydb</groupId>
+      <artifactId>flyway-mysql</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.mysql</groupId>
+      <artifactId>mysql-connector-j</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+<dependency>
+
+{% endhighlight %}
+
+
+Após adicionar as dependências, realize um **reload** no Maven.  
+
+
+## Configurando o Application.Properties
+
+Ao atualizar o Maven, serão gerados alguns **erros**, os quais solicitam informações do banco de dados. Para realizar essas configurações, temos que acessar o arquivo e preencher os parâmetros referentes à (**aplicação,login e senha**): 
+
+>src --> application.properties 
+
+{% highlight ruby %}
+
+spring.datasource.url=jdbc:mysql://localhost/meudatabase 
+spring.datasource.username=meu_usuario
+spring.datasource.password=minha_senha
+
+{% endhighlight %}
+
+<img src="{{ '/assets/img/img_18.png' | relative_url }}" alt="img_18"/><br>
+<br>
+
+Ao instalar o MySql você deve ter definido o **login e senha**. Também será necessário criar um **novo database**.
+
+### Criando um Banco de Dados
+
+É possível criar um banco de dados utilizando uma IDE, como o MySql WorkBanch, mas neste caso utilizaremos a linha de comando em um prompt. 
+
+No terminal do projeto ou em um no PowerSheell / Git digite o comando abaixo:
+
+```
+mysql -u root -p
+
+```
+
+Ou caso ocorra erros, digite o comando da pasta bin:
+
+```
+'C:\Program Files\MySQL\MySQL Server 8.0\bin\mysql.exe' -u root -p
+
+enter password: MINHASENHADOSQL
+
+create database (NOMEDOSEUDATABASE)
+
+```
+
+<img src="{{ '/assets/img/img_19.png' | relative_url }}" alt="img_19"/><br>
+<br>
+
+Confira se a aplicação está rodando corretamente realizando a execução do mesmo:
+
+<img src="{{ '/assets/img/img_21.png' | relative_url }}" alt="img_21"/><br>
 <br>
