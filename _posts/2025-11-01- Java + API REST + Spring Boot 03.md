@@ -1,5 +1,11 @@
 ---
 layout: post
+title: "Java + API Rest + Spring Boot 3"
+categories: junk
+author:
+- Ana Laura
+meta: "Springfield"
+modified_date: 2025-11-10
 ---
 
 ##  Projeto: MedCenter 
