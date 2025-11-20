@@ -5,12 +5,12 @@ categories: junk
 author:
 - Ana Laura
 meta: "Springfield"
-modified_date: 2025-11-16
+modified_date: 2025-11-19
 ---
 
 ##  Projeto: MedCenter 
 
-O **Med Center** é uma ferramenta de **CRM (Customer Relationship Management)**, o qual tem como principal a gestão de cadastrado de profissionais da área da saúde, especificamente médicos. 
+O **Med Center** é uma ferramenta de **CRM (Customer Relationship Management)**a qual tem como principal objetivo a gestão de cadastro de profissionais da área da saúde, especificamente médicos.
 
 ### Utilizando o Spring Boot 3 + Java + API REST 
 
@@ -50,9 +50,9 @@ Neste projeto iremos utilizar:
 - RepoName: <a href="https://github.com/analaurafra/med_voll_api" target="_blank">med_voll_api</a>
 - Workflow: <a href="https://github.com/analaurafra/med_voll_api/blob/main/.github/workflows/ci-cd.yml" target="_blank">ci-cd - YML</a>
 
-**Nota**: Neste caso realizei a configuração de um arquivo yml para acompanhar na esteira a evolução do projeto.
-Inicialmente as sessões de testes unitários foram comentadas.
-Foi incluindo esse tipo de arquivo para abranger as rotinas de CI e CI.
+**Nota**: Neste caso, realizei a configuração de um arquivo yml para acompanhar na esteira a evolução do projeto.
+Inicialmente, as sessões de testes unitários foram comentadas.
+Foi incluído esse tipo de arquivo para abranger as rotinas de CI e CI.
 
 <img src="{{ '/assets/img/img_02.png' | relative_url }}" alt="img_02"/>
 <br>
@@ -70,7 +70,7 @@ do projeto.
 
 ## Configurações de Build - Maven
 
-Após incluir um projeto novo ou obtê-lo através de um projeto já existente, é necessário atualizar as dependências do Maven
+Após incluir um projeto novo ou obtê-lo via um projeto já existente, é necessário atualizar as dependências do Maven
 
 Acesse ao Maven e realizei o **clean** e o **install** para baixar todas as dependências necessárias. Verifique as configurações em sua IDE acessando:`View -> Tool Windows -> Maven`
 
@@ -82,9 +82,9 @@ O Maven também poderá ser instalado via Plugin em sua IDE, acesse as configura
 
 ## Testando a API:
 
-Neste caso utilizaremos o **Insomnia**, mas temos como opção o **Postman**.
+Neste caso, utilizaremos o **Insomnia**, mas temos como opção o **Postman**.
 
-Para realizar essa configuração siga o passo a passo:
+Para realizar essa configuração, siga o passo a passo:
 
 ### Passo 01
 Para iniciarmos a utilização do Insomnia, baixe o software através do site: [Insomnia](https://insomnia.rest/download)
@@ -97,7 +97,7 @@ Após a instalação, abra o software e crie um novo projeto, clicando em "Creat
 
 
 ### Passo 02
-No menu lateral esquerdo identifique a opção `Colletions`, criei um nome para sua colletion, neste caso nomearemos como **Requisições**, pois será neste collection que testaremos o **CRUD** do nosso sistema.
+No menu lateral esquerdo, identifique a opção `Colletions`, crie um nome para sua colletion, neste caso nomearemos como **Requisições**, pois será nesta collection que testaremos o **CRUD** do nosso sistema.
 
 <img src="{{ '/assets/img/img_06_02.png' | relative_url }}" alt="img_06_02"/>
 <br>
@@ -163,9 +163,9 @@ Na imagem abaixo temos o exemplo do corpo da requisição preenchida e enviada, 
 
 A classe `controller` é responsável por receber e mapear as requisições HTTP, processá-las e retornar as respostas apropriadas. Ela atua como uma ponte entre o cliente (por exemplo, um navegador web ou aplicativo móvel) e a lógica de negócios da aplicação.
 
-### Classe Controler : MedicoController.java
+### Classe Controller : MedicoController.java
 
-Para testar à requisições e identificar se os dados foram enviados corretamente, foi criado uma **Classe Controller** `MedicoController.java`.
+Para testar as requisições e identificar se os dados foram enviados corretamente, foi criada uma **Classe Controller** `MedicoController.java`.
 
 <img src="{{ '/assets/img/img_06_12.png' | relative_url }}" alt="img_06_12"/>
 <br>
@@ -195,7 +195,7 @@ public class MedicoController {
 
 ```
 
-A seguir vá até ao Insomnia e envie novamente a **requisição POST** para o endpoint [http://localhost:8080/medicos](http://localhost:8080/medicos).
+A seguir, vá até o Insomnia e envie novamente a **requisição POST** para o endpoint [http://localhost:8080/medicos](http://localhost:8080/medicos).
 
 <img src="{{ '/assets/img/img_06_10.png' | relative_url }}" alt="img_06_10"/>
 <br>
@@ -217,20 +217,20 @@ Para garantir que a nossa requisição está sendo enviada corretamente, é nece
 
 {% endhighlight %}
 
-Execute novamente a aplicação e envie a requisição pelo Insomnia e a seguir verifique no prompt do Spring Boot se os dados foram impressos corretamente:
+Execute novamente a aplicação e envie a requisição pelo Insomnia e, a seguir, verifique no prompt do Spring Boot se os dados foram impressos corretamente:
 
 <img src="{{ '/assets/img/img_06_13.png' | relative_url }}" alt="img_06_13"/><br>
 <br>
 
-Em um outro exemplo, podemos testar o spring requisitando ao invés do bloco todo, apenas um dos itens. Utilizando o **cep** individualmente, testamos a requisição do mesmo no Insomnia e o retorno do mesmo.
+Em um outro exemplo, podemos testar o spring requisitando, ao invés do bloco todo, apenas um dos itens. Utilizando o **cep** individualmente, testamos a requisição do mesmo no Insomnia e o retorno do mesmo.
 
 
 <img src="{{ '/assets/img/img_07.png' | relative_url }}" alt="img_07"/><br>
 <br>
 
-**ATENÇÃO:** Porém ao realizar a requisição novamente, ainda será retornado na tela o bloco do `json` com todas as informações, pois quando a requisição utiliza uma `string` a mesma entende tudo como String trzendo o bloco completo(imagem anterior). 
+**ATENÇÃO:** Porém, ao realizar a requisição novamente, ainda será retornado na tela o bloco do `json` com todas as informações, pois quando a requisição utiliza uma `string` a mesma entende tudo como String trazendo o bloco completo (imagem anterior). 
 
-**Para trazer os campos individualmente é necessário criar uma classe separada para cada e especificá-la posteriormente.** 
+**Para trazer os campos individualmente, é necessário criar uma classe separada para cada um e especificá-la posteriormente.** 
 
 
 ### Criando Campos Individuais - Padrão DTO (Data Transfer Object)
@@ -241,9 +241,9 @@ Na classe `MedicoController` substitua o `string` do método cadastrar, criando 
 
 #### Cadastrando Record - Especialidades
 
-Para cadastrar essa nova classe, foi utilizado uma recurso,o qual deixa o código mais limpo e menos verboso. 
+Para cadastrar essa nova classe, foi utilizado uma recurso, o qual deixa o código mais limpo e menos verboso. 
 
-O sistema sugere o recurso `record`para correção
+O sistema sugere o recurso `record` para correção.
 
 Obs: O `record` também é **imutável por padrão**, o que significa que os campos não podem ser alterados após a criação do objeto
 
@@ -251,26 +251,26 @@ Obs: O `record` também é **imutável por padrão**, o que significa que os cam
 <img src="{{ '/assets/img/img_08_01.png' | relative_url }}" alt="img_08_01"/><br>
 <br>
 
-Altere o nome do novo **pacote** para `medicos`, pois tudo referente a médicos, será criado no mesmo. 
+Altere o nome do novo **pacote** para `medicos`, pois tudo referente a médicos será criado no mesmo. 
 
 <img src="{{ '/assets/img/img_08_02.png' | relative_url }}" alt="img_08_02"/><br>
 <br>
 
 #### Cadastrando Enun - Especialidades
 
-Na classe **DadoscadatrosMedicos**, será necessário gerar um novo `enum` para `especialidade`, utilize o mesmo recurso de correção e opte por **criar enum**. Cadastre o enum no pacote `medicos`.
+Na classe **DadoscadatrosMedicos** será necessária para gerar um novo `enum` para `especialidade`, utilize o mesmo recurso de correção e opte por **criar enum**. Cadastre o enum no pacote `medicos`.
 
 <img src="{{ '/assets/img/img_08_03.png' | relative_url }}" alt="img_08_03"/><br>
 <br>
 
-Os itens de cadastros para esta aplicação serão cadastrados conforme issue <a href="https://github.com/analaurafra/med_voll_api/issues/6" target="_blank">Cadastro de Médicos</a> no Github.
+Os itens de cadastro para esta aplicação serão cadastrados conforme a issue <a href="https://github.com/analaurafra/med_voll_api/issues/6" target="_blank">Cadastro de Médicos</a> no Github.
 
 <img src="{{ '/assets/img/img_09.png' | relative_url }}" alt="img_09"/><br>
 <br>
 
 #### Cadastrando Record - DadosEndereco
 
-A seguir iremos retornar à classe **DadoscadatrosMedicos** e inderir um novo item `DadosEndereco`, sendo necessário criar um novo `record` e um novo pacote `endereco` para este item, para abranger todos os elementos que compõem um endereço completo. 
+A seguir, retornaremos à classe **DadoscadatrosMedicos** e inserir um novo item `DadosEndereco`, sendo necessário criar um novo `record` e um novo pacote `endereco` para este item, para abranger todos os elementos que compõem um endereço completo. 
 
 <img src="{{ '/assets/img/img_10.png' | relative_url }}" alt="img_10"/><br>
 <br>
@@ -286,7 +286,7 @@ Ao retornar na classe `MedicoController`, substitua o **parâmetro** `String jso
 <img src="{{ '/assets/img/img_12.png' | relative_url }}" alt="img_11"/><br>
 <br>
 
-Iniciamente foi gerado um **Erro 400**, pois os valores informados no `enum` foram cadastrados em maiúsculo, sendo necessário adequar o arquivo json. 
+Inicialmente foi gerado um **Erro 400**, pois os valores informados no `enum` foram cadastrados em maiúsculo, sendo necessário adequar o arquivo json. 
 
 
 <img src="{{ '/assets/img/img_13.png' | relative_url }}" alt="img_12"/><br>
@@ -321,12 +321,12 @@ NOMEDORECORD[ITEM=DADODOINTEM, ITEM02=DADOITEM02]
 
 #### Classe Controller - PacientesController.java
 
-Para realizar o cadastro de Pacientes, realizamos os passos anteriores, porém, alguns contaram com algumas adequações:
+Para realizar o cadastro de pacientes, realizamos os passos anteriores, porém, alguns contaram com algumas adequações:
 
 <img src="{{ '/assets/img/img_17.png' | relative_url }}" alt="img_17"/><br>
 <br>
 
-- Criação da Classe Java Record `DadosCadastroPaciente.java`. A informações para cadastros de pacientes, está disponível na issue <a href="https://github.com/analaurafra/med_voll_api/issues/6" target="_blank">Cadastro de Pacientes</a> no Github.
+- Criação da Classe Java Record `DadosCadastroPaciente.java`. As informações para cadastros de pacientes estão disponíveis na issue <a href="https://github.com/analaurafra/med_voll_api/issues/6" target="_blank">Cadastro de Pacientes</a> no Github.
 
 
 <img src="{{ '/assets/img/img_17_01.png' | relative_url }}" alt="img_17_01"/><br>
@@ -358,7 +358,7 @@ Para realizar o cadastro de Pacientes, realizamos os passos anteriores, porém, 
 
 {% endhighlight %}
 
-**Dica**: Fique atento a classe Cadastro de Pacientes deve indicar a tela <a href="http://localhost:8080/pacientes" target="_blank">http://localhost:8080/pacientes</a>. 
+**Dica**: Fique atento à classe Cadastro de Pacientes, deve indicar a tela <a href="http://localhost:8080/pacientes" target="_blank">http://localhost:8080/pacientes</a>. 
 
 - Execução da aplicação local:
 
@@ -367,18 +367,18 @@ Para realizar o cadastro de Pacientes, realizamos os passos anteriores, porém, 
 
 ## Banco de Dados - Validação e Persistência
 
-Nesta aplicação iremos utilizar o Banco de Dado **MySql**. 
+Nesta aplicação, iremos utilizar o Banco de Dados **MySql**. 
 Baixe o mesmo seguindo a documentação : <a href="https://www.alura.com.br/artigos/mysql-instalacao-configuracao" target="_blank"> Instalação - MySQL</a>
 
 
-**Importante**: Antes de seguir é indicado realizar o registro do Mysql nas **Variáveris de Ambiente** da sua máquina: `C:\Program Files\MySQL\MySQL Server 8.0\bin`. Localize o caminho conforme a instalação realizada na sua máquina.
+**Importante**: Antes de seguir, é indicado realizar o registro do Mysql nas **Variáveis de Ambiente** da sua máquina: `C:\Program Files\MySQL\MySQL Server 8.0\bin`. Localize o caminho conforme a instalação realizada na sua máquina.
 
 
 <img src="{{ '/assets/img/img_20.png' | relative_url }}" alt="img_20"/><br>
 <br>
 
 
-Para habilitar a aplicação para a realização da Validação e Persistência será necessário incluir novas dependências (módulo de banco de dados, spring data e etc) no arquivo `pom.xml`.
+Para habilitar a aplicação para a realização da Validação e Persistência, será necessário incluir novas dependências (módulo de banco de dados, spring data etc) no arquivo `pom.xml`.
 
 
 Para encontrar as dependências, vá novamente ao site <a href="https://start.spring.io/" target="_blank">Spring Initializr</a> 
@@ -441,20 +441,20 @@ spring.datasource.password=minha_senha
 <img src="{{ '/assets/img/img_18.png' | relative_url }}" alt="img_18"/><br>
 <br>
 
-Ao instalar o MySql você deve ter definido o **login e senha**. Também será necessário criar um **novo database**.
+Ao instalar o MySql, você deve ter definido o **login e a senha**. Também será necessário criar um **novo database**.
 
 ### Criando um Banco de Dados
 
 É possível criar um banco de dados utilizando uma IDE, como o MySql WorkBanch, mas neste caso utilizaremos a linha de comando em um prompt. 
 
-No terminal do projeto ou em um no PowerSheell / Git digite o comando abaixo:
+No terminal do projeto ou em um no PowerShell / Git, digite o comando abaixo:
 
 ```
 mysql -u root -p
 
 ```
 
-Ou caso ocorra erros, digite o comando da pasta bin:
+Ou, caso ocorram erros, digite o comando da pasta bin:
 
 **Obs:** Utilizei como terminal o **Git**, pois os demais estavam gerando erros. 
 
@@ -470,15 +470,15 @@ create database (NOMEDOSEUDATABASE)
 <img src="{{ '/assets/img/img_19.png' | relative_url }}" alt="img_19"/><br>
 <br>
 
-Confira se a aplicação está rodando corretamente realizando a execução do mesmo:
+Confira se a aplicação está rodando realizando corretamente a execução do mesmo:
 
 <img src="{{ '/assets/img/img_21.png' | relative_url }}" alt="img_21"/><br>
 <br>
 
 ### Entidade JPA
 
-O **Spring DataJPA** utiliza a **JPA** como ferramenta de mapeamento e objeto relacional.
-Será necessário criar uma entidade JPA para representar uma tabela no Banco de Dados que será a classe de de domínio para utilização da persistência.   
+O **Spring DataJPA** utiliza a **JPA** como ferramenta de mapeamento objeto-relacional.
+Será necessário criar uma entidade JPA para representar uma tabela no Banco de Dados que será a classe de domínio para utilização da persistência.   
 
 **Passo 01:**
 
@@ -489,23 +489,23 @@ Vá no src >> main >> java >> medicos. Clique no pacote `medico`, utilize o atal
 
 A classe será criada, onde a mesma terá os atributos que representam o Médico.
 
-**Obs:** <font color="red"> Os atributos serão os mesmo criados no record dos passos anteriores, porém o DTO é diferente de JPA, mas conterão as mesmas informações. </font>
+**Obs:** <font color="red"> Os atributos serão os mesmos criados no record dos passos anteriores, porém o DTO é diferente de JPA, mas conterão as mesmas informações. </font>
 
 <img src="{{ '/assets/img/img_31.png' | relative_url }}" alt="img_31"/><br>
 <br>
 
-Inserar as informações, porém será necessário criar uma nova classe `Endereco.java`. 
+Insira os atributos e informações, porém será necessário criar uma nova classe `Endereco.java`. 
 <img src="{{ '/assets/img/img_32.png' | relative_url }}" alt="img_32"/><br>
 <br>
 
-A mesma terá as mesmas informações do `record`relacionado a endereço.
+A mesma terá as mesmas informações do `record` relacionado a endereço.
 
 <img src="{{ '/assets/img/img_33.png' | relative_url }}" alt="img_33"/><br>
 <br>
 
 Passo 02: 
 
-Retorne para a entidade `Medico.java`, onde serão necessários inserir as informações da **JPA**.
+Retorne para a entidade `Medico.java`, onde será necessário inserir as informações da **JPA**.
 
 Selecione o método e o substitua pelo código a seguir.
 <img src="{{ '/assets/img/img_34.png' | relative_url }}" alt="img_34"/><br>
@@ -561,9 +561,9 @@ public class Endereco {
 
 <br>
 
-Após inserir o JPA, é necessário incluir mais informações como os ***Guetters, Setters,equals, construtors, hashcodes, to string***. Em uma aplicação Java que <font color="red">não utiliza o Spring Bomt</font>, essas informações seriam inseridas manualmente. 
+Após inserir o JPA, é necessário incluir mais informações como os ***Guetters, Setters,equals, construtors, hashcodes, to string***. Em uma aplicação Java que <font color="red">não utiliza o Spring Boot</font>, essas informações seriam inseridas manualmente. 
 
-Porém um dos recursos do Spring é a utilização da biblioteca **Lombok**, o qual irá gerar códigos automáticos em tempo de compilação.
+Porém, um dos recursos do Spring é a utilização da biblioteca **Lombok**, a qual irá gerar códigos automáticos em tempo de compilação.
 
 **Obs:** Para evitar erros, instale o **Plugin da biblioteca Lombok** na sua IDE e também verifique se você **incluiu a dependência** do mesmo no arquivo `pom.xml`. 
 
@@ -621,13 +621,13 @@ public class Endereco {
 
 {% endhighlight %}
 
-Após este passo as nossas duas entidades `Medico.java` e `Endereco.java` estarão mapeadas para utilização da JPA. 
-Para salvar por exemplo a entidade `Medico.java`em um banco de dados, no geral utilizamos as classes **DAO (Data Access Object )**, porém no **Spring Data JPA**, o Spring Boot em geral não costumar utilizar as classes DAO. 
+Após este passo, as nossas duas entidades `Medico.java` e `Endereco.java` estarão mapeadas para utilização da JPA. 
+Para salvar, por exemplo, a entidade `Medico.java` em um banco de dados, no geral utilizamos as classes **DAO (Data Access Object)**, porém no **Spring Data JPA**, o Spring Boot em geral não costuma utilizar as classes DAO. 
 
-Onde o **Spring Data JPA** criou um mecânismos para gerenciamento destes dados de **persistência** utilizando interfaces. 
+Onde o **Spring Data JPA** criou um mecanismo para gerenciamento destes dados de **persistência** utilizando interfaces. 
 
 
-PERSISTÊNCIA - DAO (Data Access Object )
+PERSISTÊNCIA - DAO (Data Access Object)
 
 O **padrão de projeto DAO**, conhecido também por Data Access Object, é utilizado para persistência de dados, onde seu principal objetivo é **separar regras de negócio de regras de acesso a banco de dados**. 
 
@@ -666,15 +666,15 @@ public class ProdutoDao {
 
 REPOSITORY
 
-O **Spring Boot** trabalha com **Repository** que substitui o uso das classes DAO. Que são interfaces já disponibilizas pelo Spring Boot. 
+O **Spring Boot** trabalha com **Repository** que substitui o uso das classes DAO. Que são interfaces já disponibilizadas pelo Spring Boot. 
 
 Passo 01:
 
-Crie uma novas interface, no pacote `medico` crie uma nova interface, clicando em cima do pacote e inserindo os comandos ALT + INSERT, escolha o interface e nomei como `MedicoRepository`.
+Crie uma nova interface, no pacote `medico` clicando em cima do pacote e inserindo os comandos ALT + INSERT, escolha a interface e nomeie como `MedicoRepository`.
 
-Obs: Por padrão adicionamos o sufixo repository para identificar o tipo da interface. 
+**Obs.:** Por padrão, adicionamos o sufixo repository para identificar o tipo da interface. 
 
-Para inserir o Spring Data será necessário inserir um comando extends e os generics informando o tipo da entidade(`Medico`) e tipo de atributo da chave primária(`Long`). 
+Para inserir o Spring Data será necessário inserir um comando extends e os generics informando o tipo da entidade (`Medico`) e tipo de atributo da chave primária (`Long`). 
 
 
 <img src="{{ '/assets/img/img_39.png' | relative_url }}" alt="img_39"/><br>
@@ -694,9 +694,9 @@ public interface MedicoRepository extends JpaRepository <Medico, Long>
 
 O próximo passo é utilizar o Repository no nosso controller `Medico.Controller.java`. 
 
-Iremos inicialemnte excluir o System Out do método cadastrar e mandar o repository persistir o medico no banco de dados.
+Iremos inicialmente excluir o System Out do método cadastrar e mandar o repository persistir o médico no banco de dados.
 
-Portanto eu preciso da classe da interface repository, atribuindo a mesma na classe controller. Quem irá instanciar o metodo repository será o Spring Data. Onde teremos que inserir a notação `@Autowired` que irá instanciar e passar os repository dentro da nossa classe controller. 
+Portanto, eu preciso da classe da interface repository, atribuindo-a mesma na classe controller. Quem irá instanciar o método repository será o Spring Data. Onde teremos que inserir a notação `@Autowired` que irá instanciar e passar os repository dentro da nossa classe controller. 
 
 
 <img src="{{ '/assets/img/img_40.png' | relative_url }}" alt="img_40"/><br>
@@ -712,7 +712,7 @@ Portanto eu preciso da classe da interface repository, atribuindo a mesma na cla
 
 {% endhighlight %}
 
-O próximo passo será ir até o método `cadastrar` e inserir o `repository`, o qual herda do JPA Repository, que possui um método chamado `save` que irá salvar,realizando um insert na tabela do banco de dados. 
+O próximo passo será ir até o método `cadastrar` e inserir o `repository`, o qual herda do JPA Repository, que possui um método chamado `save` que irá salvar, realizando um insert na tabela do banco de dados. 
 
 Porém, eu preciso passar um objeto do tipo `médico`. Mas até o momento eu apenas possuo as informações do meu DTO representado pelo record `DadosCadastroMedicos`, sendo necessário realizar a conversão destas informações. 
 
@@ -769,9 +769,9 @@ Porém também será necessário criar um constructor para classe `Endereco.java
 {% endhighlight %}    
 
 
-Execute o projeto dando um **Run** no `ApiApplication` e a seguir vamos testar via **Insomnia** realizando as requisições:
+Execute o projeto dando um **Run** no `ApiApplication` e a seguir iremos testar via **Insomnia** realizando as requisições:
 
-A princípio, pode ser que seja gerado um erro, informando que a tabela médicos não existe. E de fato a mesma ainda não foi criada, pois criamos apenas um database no meu MySQL. 
+A princípio, pode ser que seja gerados um erro, informando que a tabela médicos não existe. E de fato a mesma ainda não foi criada, pois criamos apenas um database no meu MySQL. 
 
 <img src="{{ '/assets/img/img_45.png' | relative_url }}" alt="img_45"/><br>
 <br>
@@ -780,29 +780,29 @@ A princípio, pode ser que seja gerado um erro, informando que a tabela médicos
 
 CRIANDO A TABELA
 
-Uma das opções para criar a tabela, seria acessar o meu MySQL, acessar o meu banco de dados e criar uma tabela médicos. 
-Porém como boa prática, vamos utilizar um outro método que controle a evolução(versionamento) deste banco de dados para fins de rastreabilidade. 
+Uma das opções para criar a tabela seria acessar o meu MySQL, acessar o meu banco de dados e criar uma tabela médicos. 
+Porém, como boa prática, vamos utilizar um outro método que controle a evolução (versionamento) deste banco de dados para fins de rastreabilidade. 
 
-Utilizaremos uma ferramenta de Migrations, onde anteriormente adicionamos a dependência flyway. O qual é uma bibliotéca externa que realiza controle de migrações com o banco de dados. Portanto utilizaremos o Flyway para criação de tabelas no Spring Boot. 
+Utilizaremos uma ferramenta de Migrations, onde anteriormente adicionamos a dependência Flyway. O qual é uma biblioteca externa que realiza controle de migrações com o banco de dados. Portanto, utilizaremos o Flyway para criação de tabelas no Spring Boot. 
 
 Obs: Confira em seu arquivo `pom.xml` se as dependências do mesmo se encontram no seu arquivo.
 
 Para salvar os dados, teremos que criar um novo diretório dentro da pasta `resources` que se encontra na árvore do projeto
 
-Selecione a pasta **resources** e dê o comando ALT + INSERT, escolha a opção **Directory** a seguir, nomere como `db/migration`
+Selecione a pasta **resources** e dê o comando ALT + INSERT, escolha a opção **Directory** a seguir, nomeie como `db/migration`
 
 <img src="{{ '/assets/img/img_46.png' | relative_url }}" alt="img_46"/><br>
 <br>
 
-<font color ="red">IMPORTANTE: Todas as vezes que você for mexer com Migrations, é necessário "Stoppar" o Projeto. Pois estamos utilizando o método devtools </font>
+<font color ="red">IMPORTANTE: Todas às vezes que você for mexer com Migrations, é necessário "Stoppar" o Projeto. Pois estamos utilizando o método devtools </font>
 
-A seguir dentro do diretório db >> migrations, dê novamente o comando ALT + INSERT e opte pela opção FILE. Nome o arquivo como: `V1__create-table-medicos.sql`
+A seguir, dentro do diretório db >> migrations, dê novamente o comando ALT + INSERT e opte pela opção FILE. Nomeie o arquivo como: `V1__create-table-medicos.sql`
 
-<font color ="red">Obs: Por padrão o Flyway possui uma nomenclatura que deve ser utilizada desta forma:</font>
+<font color ="red">Obs: Por padrão, o Flyway possui uma nomenclatura que deve ser utilizada desta forma:</font>
 
 | Nome | Descrição|
 |----|----|
-|V1| Número d Versão do Arquivo|
+|V1| Número da Versão do Arquivo|
 |__ | Underline Duplo |
 |nome-do-meu-arquivo| Nome do arquivo da sua escolha|
 |.sql| Extensão da tabela|
@@ -839,7 +839,7 @@ create table medicos(
 <img src="{{ '/assets/img/img_48.png' | relative_url }}" alt="img_48"/><br>
 <br>
 
-A seguir execute novamente a aplicação e verifique o log, caso sejam gerado erros, os mesmo podem ser gerados solicitando adequações das dependências no arquivo `pom.xml`. Também é interessante rodas os comandos **maven clean e install** e dar um **update** no projeto. Lembrando que isso só deve ser feito quando tiver finalizado os migrations. 
+A seguir, execute novamente a aplicação e verifique o log, caso sejam gerados erros, os mesmos podem ser gerados solicitando adequações das dependências no arquivo `pom.xml`. Também é interessante rodar os comandos **maven clean e install** e dar um **update** no projeto. Lembrando que isso só deve ser feito quando tiver finalizado os migrations. 
 
 A seguir veremos um log com a mensagem informando que 1 migration foi realizada com sucesso. 
 
@@ -862,7 +862,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 TESTANDO O BANCO DE DADOS
 
-No terminal vamos abrir o nosso banco de dados sql:
+No terminal, vamos abrir o nosso banco de dados sql:
 
 ```
 mysql -u root -p
@@ -876,8 +876,8 @@ Será solicitada a senha de acesso do banco de dados, a qual foi criada nos pass
 <img src="{{ '/assets/img/img_50.png' | relative_url }}" alt="img_50"/><br>
 <br>
 
-A seguir ensira o comando para aparecer a tabela. 
-Obs: A tabela ***flyway_schema_history*** é uma tablea do flyway, não deve ser modificada!
+A seguir, insira o comando para aparecer a tabela. 
+Obs: A tabela ***flyway_schema_history*** é uma tabela do flyway, não deve ser modificada!
 
 ```
 mysql> use nomedomeubancodedados
@@ -897,7 +897,7 @@ mysql> show tables;
 <img src="{{ '/assets/img/img_51.png' | relative_url }}" alt="img_51"/><br>
 <br>
 
- Para abrir a tabelas `medicos` ensira o comando abaixo e visualize as informações:
+ Para abrir a tabela `medicos` insira o comando abaixo e visualize as informações:
 
 ```
 mysql> desc medicos;
@@ -909,9 +909,9 @@ mysql> desc medicos;
 
 SALVANDO OS DADOS NA TABELA 
 
-Para testar se conseguiremos salvar os nossos dados na tabela realize uma nova requisição via Insomnia:
+Para testar se conseguiremos salvar os nossos dados na tabela, realize uma nova requisição via Insomnia:
 
-Para testar se as informações foram enviadas do Insominia para a Tabela rode o comando:
+Para testar se as informações foram enviadas do Insomnia para a Tabela, rode o comando:
 
 ```
 select * from medicos;
@@ -925,7 +925,7 @@ select * from medicos;
 
 <br>
 
-<font color ="red">Também precisei realizar algumas adequações nas dependências do flyway, "chumbando" meu login e senha do banco de dados.</font>
+<font color ="red">Também precisei realizar algumas adequações nas dependências do Flyway, "chumbando" meu login e senha do banco de dados.</font>
 
 <img src="{{ '/assets/img/img_55.png' | relative_url }}" alt="img_55"/><br>
 <br>
@@ -952,7 +952,7 @@ select * from medicos;
 
 {% endhighlight %}
 
-Na imagem é possível observar uma nova linha com novos dados, repita os passos anteriores para consultar a nova linha:
+Na imagem, é possível observar uma nova linha com novos dados, repita os passos anteriores para consultar a nova linha:
 
 <img src="{{ '/assets/img/img_54.png' | relative_url }}" alt="img_54"/><br>
 <br>
@@ -963,11 +963,11 @@ VALIDAÇÕES DOS CAMPOS OBRIGATÓRIOS
 É muito importante realizar as validações das informações que estão chegando na API.
 Para isso, anteriormente instalamos a dependência do **módulo de validation**, o qual será integrado ao **Bean Validation**.
 
-Através de **anotações**, o Bean Validation irá verificar cada um dos campos. 
+Mediante **anotações**, o Bean Validation irá verificar cada um dos campos. 
 
 Exemplo: Record `DadosCadastroMedico.java`, pois neste arquivo constam os campos que estão chegando na requisição.
 
--  Para facilitar a visualização, após o parênteses separe os campos;
+-  Para facilitar a visualização, após o parêntese separe os campos;
 -  Realize as anotações conforme o tipo do campo:
 
 {% highlight ruby %}
@@ -1070,9 +1070,9 @@ public record DadosEndereco(
 <img src="{{ '/assets/img/img_58.png' | relative_url }}" alt="img_58"/><br>
 <br>
 
-- Para testar, vá até o Insominia e altere os dados do arquivo Json, conforme cada especificação de cada campo:
+- Para testar, vá até o Insomnia e altere os dados do arquivo Json, conforme cada especificação de cada campo:
 
-Exemplo: Deixei o campo da Nome Vazio, é gerada uma informação com o campo @NotBlank e que o mesmo não pode ser vazio.
+Exemplo: Deixei o campo do Nome Vazio, é gerada uma informação com o campo @NotBlank e que o mesmo não pode ser vazio.
 
 <img src="{{ '/assets/img/img_59.png' | relative_url }}" alt="img_59"/><br>
 <br>
@@ -1080,7 +1080,7 @@ Exemplo: Deixei o campo da Nome Vazio, é gerada uma informação com o campo @N
 CRIANDO UMA NOVA MIGRATION
 
 Quero inserir um novo campo `telefone` no meu cadastro
-Para isso precisarei atualizar o meu arquivo migrations, para isso siga os passos a seguir:
+Para isso, precisarei atualizar o meu arquivo migrations, para isso, siga os passos a seguir:
 
 - No controller DadosCadastroMedicos insira o novo atributo logo após o campo e-mail
 
@@ -1093,7 +1093,7 @@ String telefone,
 
 
 
-- A seguir vá para a classe `Medico.java` pata atualizar a JPA e o constructor:
+- A seguir vá para a classe `Medico.java` para atualizar a JPA e o ***Constructor***:
 
 ```
 @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -1125,10 +1125,10 @@ String telefone,
 <br>
 
 
-- Agora é necessário atuar no banco de dados através da migration.Como a migration V1 já foi executada, então gere uma nova versão. Interrompa o projeto antes de criar a nova migration:
+- Agora é necessário atuar no banco de dados por meio da migration. Como a migration V1 já foi executada, então gere uma nova versão. Interrompa o projeto antes de criar a nova migration:
 
 
-- Crie a versão V2 alterando o nome e adequando as informações do código sql. Neste caso nomeamos como 
+- Crie a versão V2, alterando o nome e adequando as informações do código SQL. Neste caso nomeamos como 
 
 `V2__alter-table-add-column-telefone.sql`.
 
@@ -1149,7 +1149,207 @@ alter table medicos add telefone varchar(20) not null;
 <img src="{{ '/assets/img/img_64.png' | relative_url }}" alt="img_64"/><br>
 <br>
 
-- Inclua o campo telefone no arquivo json e altere alguns campos para evitar erros, teste e verifique se a requisição retorno 200 indicando que a requisição foi bem sucedida.
+- Inclua o campo telefone no arquivo **JSON** e altere alguns campos para evitar erros, teste e verifique se a requisição **foi bem sucedida retornou código 200** indicando que a requisição foi bem sucedida.
 
-<img src="{{ '/assets/img/img_64.png' | relative_url }}" alt="img_64"/><br>
+<img src="{{ '/assets/img/img_65.png' | relative_url }}" alt="img_65"/><br>
 <br>
+
+### Replicando o Data JPA Para Pacientes
+
+
+- Criando a nova classe `Paciente.java`:
+
+<img src="{{ '/assets/img/img_66.png' | relative_url }}" alt="img_66"/><br>
+<br>
+
+
+{% highlight ruby %}
+
+package med.voll.api.pacientes;
+
+
+import jakarta.persistence.*;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import med.voll.api.endereco.Endereco;
+
+@Table(name = "Pacientes")
+@Entity(name = "Paciente")
+@Getter
+@NoArgsConstructor
+@EqualsAndHashCode(of ="id")
+public class Paciente {
+
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String nome;7
+    private String cpf;
+    private String email;
+    private String telefone;
+
+    @Embedded
+    private Endereco endereco;
+
+    public Paciente(DadosCadastroPaciente dados) {
+        this.nome = dados.nome();
+        this.cpf = dados.cpf();
+        this.email = dados.email();
+        this.telefone = dados.telefone();
+        this.endereco = new Endereco(dados.endereco());
+
+    }
+}
+
+{% endhighlight %} 
+
+- Neste caso, utilizamos as mesmas informações da classe `Endereco.java` já pré-configurada para médicos, pois os campos serão os mesmos, sendo **diferenciado pelo id de médicos e pacientes**.
+
+
+- A seguir, faça as adequações na classe `PacienteController.java`:
+
+<img src="{{ '/assets/img/img_67.png' | relative_url }}" alt="img_67"/><br>
+<br>
+
+
+{% highlight ruby %}
+
+package med.voll.api.controller;
+
+
+import med.voll.api.pacientes.DadosCadastroPaciente;
+import med.voll.api.pacientes.Paciente;
+import med.voll.api.pacientes.PacienteRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("pacientes")
+
+public class PacientesController {
+
+    @Autowired
+    private PacienteRepository repository;
+
+    @PostMapping
+    @Transactional
+    public void cadastrar(@RequestBody DadosCadastroPaciente dados) {
+    repository.save(new Paciente(dados));
+
+        // System.out.println( "Dados Recebidos: " +dados);
+    }
+
+}
+
+{% endhighlight %} 
+
+
+- Também será necessário criar o Repository para a classe Pacientes, onde às nomeamos de `PacienteRepository.java`:
+
+<img src="{{ '/assets/img/img_68.png' | relative_url }}" alt="img_68"/><br>
+<br>
+
+{% highlight ruby %}
+
+package med.voll.api.pacientes;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface PacienteRepository extends JpaRepository <Paciente, Long> {
+
+}
+
+{% endhighlight %}
+
+- A classe `DadosCadastroPaciente.java` também foi configurada e adaptada para atender as necessidades dos campos e para cobertura de testes. 
+
+<img src="{{ '/assets/img/img_69.png' | relative_url }}" alt="img_69"/><br>
+<br>
+
+
+{% highlight ruby %}
+
+package med.voll.api.pacientes;
+
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+import med.voll.api.endereco.DadosEndereco;
+
+public record DadosCadastroPaciente(
+
+        @NotBlank
+        String nome,
+
+        @NotBlank
+        String telefone,
+
+        @NotBlank
+        @Pattern(regexp = "\\d{3}\\.?\\d{3}\\.?\\d{3}\\-?\\d{2}") String cpf,
+
+        @NotBlank
+        @Email
+        String email,
+
+        @NotBlank
+        @NotNull
+        DadosEndereco endereco) {
+
+}
+
+{% endhighlight %}
+
+- Para compor o banco de dados, incluímos uma query em SQL com os campos referentes ao cadastro de pacientes através das **migrations**. Lembrando que neste passo é necessário **Stopar** o projeto para evitar erros:
+
+**Obs:** Inicialmente criei uma V1 nova e alterei o título do arquivo, porém houve um erro indicando duplicidade de versões.
+Portando, é necessário sempre criar novas versões antes de executar a migration. A mesma foi nomeada como `V3__create-table-pacientes.sql`
+
+<img src="{{ '/assets/img/img_70.png' | relative_url }}" alt="img_70"/><br>
+<br>
+
+{% highlight ruby %}
+
+create table pacientes(
+    id bigint not null auto_increment,
+    nome varchar(100) not null,
+    email varchar(100) not null unique,
+    cpf varchar(14) not null unique,
+    telefone varchar(20) not null,
+    logradouro varchar(100) not null,
+    bairro varchar(100) not null,
+    cep varchar(9) not null,
+    complemento varchar(100),
+    numero varchar(20),
+    uf char(2) not null,
+    cidade varchar(100) not null,
+
+    primary key(id)
+);
+
+{% endhighlight %}
+
+
+- Para testar se realmente foi criada a tabela no banco de dados foram utilizados os comandos padrões para acesso.
+Podemos verificar a inclusão da tabela `pacientes` no banco de dados.
+
+<img src="{{ '/assets/img/img_71.png' | relative_url }}" alt="img_71"/><br>
+<br>
+
+
+- Também verificar a estrutura da mesma:
+
+<img src="{{ '/assets/img/img_72.png' | relative_url }}" alt="img_72"/><br>
+<br>
+
+
+- A imagem a seguir exemplifica os dados cadastrados na tabela através das requisições cadastradas via **Insomnia**. Lembrando que, para um novo cadastro, é necessário mudar algumas informações do cadastro para evitar erros de duplicidade.
+
+<img src="{{ '/assets/img/img_73.png' | relative_url }}" alt="img_73"/><br>
+<br>
+
