@@ -5,7 +5,7 @@ categories: junk
 author:
 - Ana Laura
 meta: "Springfield"
-modified_date: 2025-11-19
+modified_date: 2025-11-21
 ---
 
 ##  Projeto: MedCenter 
@@ -1353,3 +1353,294 @@ Podemos verificar a inclusão da tabela `pacientes` no banco de dados.
 <img src="{{ '/assets/img/img_73.png' | relative_url }}" alt="img_73"/><br>
 <br>
 
+
+LISTAGEM - Médicos (Get)
+
+O próximo passo será realizar a listagem das informações referente ao cadastro de médicos. 
+Para isso, teremos que incluir no nosso Controller `MedicoController.java` o métodos **Listar**:
+
+
+<img src="{{ '/assets/img/img_74.png' | relative_url }}" alt="img_74"/><br>
+<br>
+
+```
+
+// Metodo Listar
+     @GetMapping
+         public List <Medico> listar() {
+         return repository.findAll(); // a entidade JpaRepository já possui todos os métodos cadastrados em a necessidade de repetí-los na `MedicoRepository`
+
+         }
+
+
+```
+
+Até o momento o nosso ***repository*** não irá utilizar o ***save*** assim como ocorre no cadastro, será utilizado o ***findAll***. O ***findAll*** irá listar e encontrar todas as informações. Também não utilizaremos o `public void` sendo substituido por `public List` para criar a lista. 
+
+Utilizaremos a mesma entidade `JpaRepository` que se encontra atualmente no repository `MedicoRepository.java`, pois esta entidade também engloba todos os métodos como (POST, GET e etc)
+
+<img src="{{ '/assets/img/img_75.png' | relative_url }}" alt="img_75"/><br>
+<br>
+
+Nesta lista devem ser devolvidos: Nome, email,CRM e especialidade, o endereço e telefone não.
+Porém, se eu solicitar que seja listado tudo referente a Médico, todas as informações retornarão.
+Para que sejam retornados apenas o dados que eu eu quero, será necessário realizar uma mudança na nossa classe:
+Criando um novo `record` : `DadosListagemMedicos`:
+
+<img src="{{ '/assets/img/img_76.png' | relative_url }}" alt="img_76"/><br>
+<br>
+
+Mude o pacote de `controller` para `medico`:
+
+```
+     // Metodo Listar
+     @GetMapping
+         public List <DadosListagemMedico> listar() {
+         return repository.findAll(); // a entidade JpaRepository já possui todos os métodos cadastrados em a necessidade de repetí-los na `MedicoRepository`
+
+         }
+
+```
+
+<img src="{{ '/assets/img/img_77.png' | relative_url }}" alt="img_77"/><br>
+<br>
+
+Declare as propriedades do DTO do `record`, as quais devolverão **apenas as informações necessárias da minha preferência**:
+
+<img src="{{ '/assets/img/img_78.png' | relative_url }}" alt="img_78"/><br>
+<br>
+
+```
+package med.voll.api.medico;
+
+public record DadosListagemMedico(
+
+        String nome,
+
+        String email,
+
+        String crm,
+
+        Especialidade especialidade) { // Enum Especialidade
+}
+
+```
+
+Será necessário realizar uma **conversão**, no controller `MedicoController.java`, onde o retorno deverá ser de `Medicos` para `DadosListagemMedico`:
+
+
+<img src="{{ '/assets/img/img_79.png' | relative_url }}" alt="img_79"/><br>
+<br>
+
+
+```
+     @GetMapping
+         public List <DadosListagemMedico> listar() {
+         return repository.findAll().stream().map(DadosListagemMedico::new); 
+         }
+
+```
+
+Será necessário criar um `constructor` na classe `DadosListagemMedico`:
+
+<img src="{{ '/assets/img/img_80.png' | relative_url }}" alt="img_80"/><br>
+<br>
+<br>
+
+<img src="{{ '/assets/img/img_81.png' | relative_url }}" alt="img_81"/><br>
+<br>
+
+
+```
+
+    public DadosListagemMedico(Medico medico){
+        this(medico.getNome(), medico.getEmail(), medico.getCrm(), medico.getEspecialidade());
+
+    }
+
+
+```
+
+Logo após criar o construtor, ao retornar no controller, será necessário finalizar incluindo o comando para **converter** o retorno em uma lista `toList()`:
+
+<img src="{{ '/assets/img/img_82.png' | relative_url }}" alt="img_82"/><br>
+<br>
+
+```
+  @GetMapping
+         public List <DadosListagemMedico> listar() {
+         return repository.findAll().stream().map(DadosListagemMedico::new).toList();
+
+         }
+
+```
+
+TESTANDO A LISTAGEM 
+
+
+No Insomnia, será necessário criar uma nova requisição para testar a Listagem.
+
+Neste caso utilizaremos o método `GET`, onde o nosso localhost deverá ser incluso.
+
+Como queremos **receber** e não **enviar** apenas é necessário enviar a requisição e verificar se serão retornadas as informações em formato de **JSON e Arrays**.
+
+Como podemos observar as informações referentes ao objetivo completo **não** foram retornas, confirmando o sucesso da listagem. 
+
+
+<img src="{{ '/assets/img/img_83.png' | relative_url }}" alt="img_83"/><br>
+<br>
+
+PAGINAÇÃO NO SPRING BOOT
+
+
+Nesta aplicação, queremos que ao realizar uma busca, o usuário receba os cadastros já realizado na plataforma de forma paginada. Para que não sejam carregados todos os cadastros de uma vez, pois ao receber todos os cadastros,0 isso poderá impactar na memória e na performance do projeto. 
+
+
+Para evitar esse tipo de conflito iremos utilizar a **Paginação**.
+
+
+No Spring Boot existe uma classe que se chama **Pageable**, neste caso devemos utilizar a do tipo **springframework**.
+
+Acesse a classe Controller `MedicoController.java` e no método `public List` será inclusa classe `paginable` o parâmetro de `paginacao`
+
+No `findAll`, também passaremos como parametro a `paginacao`:
+
+Uma outra alteração, será a troca do retorno do método `public List`para `public Page`, a qual já possui os *generics***
+(>, < e etc).
+
+
+```
+     // Metodo Listar
+     @GetMapping
+         public Page<DadosListagemMedico> listar(Pageable paginacao) {  
+         return repository.findAll(paginacao).stream().map(DadosListagemMedico::new).toList();
+
+         }
+
+
+```
+
+
+Porém ao mudar o método de list para page o retorno do repository também deverá ser adequado:
+
+```
+    return repository.findAll(paginacao).map(DadosListagemMedico::new);
+```
+
+- Podemos retirar a chamada para o método `stream()`,pois o método `Page`já possui o mesmo. 
+- O `To List` também poderá ser retirado, pois o `map` já realiza a conversão e devolve uma lista.
+
+<img src="{{ '/assets/img/img_84.png' | relative_url }}" alt="img_84"/><br>
+<br>
+
+
+Após realizar as adequações, retorne ao Insomnia e **execute novamente a requisição**.
+Repare que o prompt irá apresentar um novo comportamente onde o `Spring` adicionará um `Pageable` no arquivo `JSON` devolvendo as informações da Paginação.
+
+<img src="{{ '/assets/img/img_85.png' | relative_url }}" alt="img_85"/><br>
+<br>
+
+Para controlar o número de registros por requisição, será necessário realizar uma alteração na ***url*** do Insomnia adicionando um parâmetro ***size***. Por padrão o Spring retorna 20 registros. Neste caso quero que seja listado apenas 1 registro, conforme destacado na imagem abaixo. 
+
+```
+http://localhost:8080/medicos?size=1 
+
+```
+
+<img src="{{ '/assets/img/img_86.png' | relative_url }}" alt="img_86"/><br>
+<br>
+
+Para definir qual a página você deseja obter a informação é necessário realizar novamente a adequação da ***url***
+
+```
+http://localhost:8080/medicos?size=1&page=2
+
+```
+
+ORDENAÇÃO
+
+Para realizar a ordenação dos dados cadastrados, iremos utilizar um novo parâmetro chamado ***sort***. Neste caso podemos informar qual parâmetro queremos destacar. 
+
+```
+http://localhost:8080/medicos?sort=crm
+```
+<img src="{{ '/assets/img/img_88.png' | relative_url }}" alt="img_88"/><br>
+<br>
+
+Por padrão a ordenação ocorre de forma **crescente**, mas para converter em ordem **decrescente** podemos incluir o `desc`na url 
+
+```
+http://localhost:8080/medicos?sort=crm,desc
+```
+
+<img src="{{ '/assets/img/img_87.png' | relative_url }}" alt="img_87"/><br>
+<br>
+
+
+Dica: Caso eu queira traduzir para português os parâmetros, é necessário realizar uma adequação dos mesmos no arquivo, `applications.properties`
+
+
+```
+spring.data.web.pageable.page-parameter=pagina
+spring.data.web.pageable.size-parameter=tamanho
+spring.data.web.sort.sort-parameter=ordem
+
+```
+
+O mesmo deve ser adequado na URL:
+
+Exemplo: Para listar os médicos de nossa API trazendo apenas 5 registros da página 2, ordenados pelo e-mail e de maneira decrescente, a URL da requisição deve ser:
+
+```
+http://localhost:8080/medicos?tamanho=5&pagina=1&ordem=email,desc
+
+```
+<br>
+<br>
+
+ORDENAÇÃO - OPÇÃO 02
+
+Eu posso configurar a ordenação de outra forma no meu controller `MedicoController.java`, definindo o número de requisições, o sort e demais parâmetros. 
+ 
+```
+ public Page<DadosListagemMedico> listar (@PageableDefault(size=10, sort={"nome"}) Pageable paginacao) 
+
+```
+<img src="{{ '/assets/img/img_89.png' | relative_url }}" alt="img_89"/><br>
+<br>
+   
+
+**Os nomes dos comandos de paginação e ordenação, também poderão ser personalizados, porém é necessário utilizar o arquivo `application.properties`.** 
+
+Para que seja destacado o log das requisições do arquivo sql e ordernar os mesmos ao executar a aplicação, será necessário incluir no arquivo `application.properties` os seguintes parâmetros:
+
+```
+
+# logs de comados sqls
+spring.jpa.show-sql=true
+
+# Formatando os logs de comando sql
+spring.jpa.properties.hibernate.format_sql=true
+
+```
+
+<img src="{{ '/assets/img/img_90.png' | relative_url }}" alt="img_90"/><br>
+<br>
+
+Logo após, execute novamente via Insomnia e verifique o log no Intelij. Na imagem abaixo, podemos visualizar o log com que o SpringData está disparando no nosso banco de dados de forma listada. 
+
+<img src="{{ '/assets/img/img_91.png' | relative_url }}" alt="img_91"/><br>
+<br>
+
+PAGINAÇÃO E ORDENAÇÃO - Pacientes
+
+
+Também foram realizas as mesmas configurações para listagem de pacientes, abaixo segue imagem da requisição no Insominia destacando o `Pageable` e um exemplo de requisição com ordenação **descrescente**. 
+
+<img src="{{ '/assets/img/img_92.png' | relative_url }}" alt="img_92"/><br>
+<br>
+
+Log de execução destacando o log ao executar a aplicação:
+
+<img src="{{ '/assets/img/img_93.png' | relative_url }}" alt="img_93"/><br>
+<br>
