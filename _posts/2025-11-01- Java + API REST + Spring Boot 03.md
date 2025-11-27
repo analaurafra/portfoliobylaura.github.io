@@ -1644,3 +1644,138 @@ Log de execução destacando o log ao executar a aplicação:
 
 <img src="{{ '/assets/img/img_93.png' | relative_url }}" alt="img_93"/><br>
 <br>
+
+ATUALIZAÇÃO 
+
+Para atualizar os dados de um cadastro, será necessário identificar a qual médico de refere, para isso, precisamos incluir o `id`no nosso dto e na nossa `listagem`.
+
+Acesse o `record` `DadosAtualizacaoMedico.java` e inclua o `id`, tanto no record, quando no `constructor`:
+
+
+```
+
+package med.voll.api.medico;
+
+public record DadosListagemMedico(
+
+        Long id,
+
+        String nome,
+
+        String email,
+
+        String crm,
+
+        Especialidade especialidade
+        ) {
+
+    public DadosListagemMedico(Medico medico){
+        this(medico.getId(), medico.getNome(), medico.getEmail(), medico.getCrm(), medico.getEspecialidade()), ;
+
+    }
+}
+
+
+```
+
+<img src="{{ '/assets/img/img_94.png' | relative_url }}" alt="img_94"/><br>
+<br>
+
+
+Após realizar as adequações, execute a requisição via Insomnia, repare que o `id` também é registrado no arquivo JSON. 
+
+<img src="{{ '/assets/img/img_95.png' | relative_url }}" alt="img_95"/><br>
+<br>
+
+O mesmo foi adequado para a classe `PacienteController.java`:
+
+```
+package med.voll.api.pacientes;
+
+public record DadosListagemPaciente(
+
+        Long id,
+
+        String nome,
+
+        String email,
+
+        String telefone) {
+
+    public DadosListagemPaciente (Paciente paciente){
+        this(paciente.getId(),paciente.getNome(), paciente.getEmail(),paciente.getTelefone());
+
+    }
+
+```
+
+<img src="{{ '/assets/img/img_96.png' | relative_url }}" alt="img_96"/><br>
+<br>
+
+
+
+ATUALIZAÇÃO - MÉDICOS(PUT)
+
+
+Após incluir o ***id***, agora é possível realizar alterações em cadastros especificos, conforme a nossa preferência.
+
+Ainda no Insominia abra um novo arquivo no formato de uma **Requisição HTTP**, opte pela opção ***PUT***.
+
+Ensira a URL: `chttp://localhost:8080/medico`
+
+Neste caso iremos **enviar requisições**, portanto é necessário optar por um arquivo no formato ***JSON***.
+
+No exemplo abaixo, **queremos que o cadastro com o id = 3 tenha seu número de telefone atualizado**:
+
+```
+{
+	"id" : 3, 
+	"telefone" : "19991611596"
+		
+}
+```
+
+Na imagem abaixo temos uma visão de uma tentativa de envio de requisições utilizando o método PUT, porém, ficou pendente incluir esse método em nosso controller `MedicoController.java`.
+
+<img src="{{ '/assets/img/img_97.png' | relative_url }}" alt="img_97"/><br>
+<br>
+
+A seguir, inicialmente incluimos o Spring `@PutMapping` e ao instansiar a classe do tipo `void`teremos que incluir um novo `record` do tipo `DadosAtualizacaoMedico.java` para `medicos`: 
+
+<img src="{{ '/assets/img/img_98.png' | relative_url }}" alt="img_98"/><br>
+<br>
+
+
+No `record` `DadosAtualizaMedico.java` foram incluso os campos opcionais e o id que é um campo obrigatórioe que não pode ser nulo. 
+
+<img src="{{ '/assets/img/img_99.png' | relative_url }}" alt="img_99"/><br>
+<br>
+
+
+```
+package med.voll.api.medico;
+
+import jakarta.validation.constraints.NotNull;
+import med.voll.api.endereco.Endereco;
+
+public record DadosAtualicacaoMedicos(
+
+        @NotNull
+        Long id, // É obrigatório
+
+        String nome, //É opcional
+
+        String telefone, //É opcional
+
+        Endereco endereco) { //É opcional
+
+}
+
+```
+
+ATUALIZANDO NO BANCO DE DADOS
+
+Para atualizar as requisições do objeto no banco de dados, será necessário carregar os dados atuais no banco de dados e **sobscrevê-lo**. 
+    var medico :Medico = repository.GetReferenceById(dados.id());
+    
+
