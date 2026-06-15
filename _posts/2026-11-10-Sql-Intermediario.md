@@ -1,16 +1,16 @@
 ---
 layout: post
-title: "SQL - Intermediário"
+title: "SQL Intermediário"
 categories: junk
 author:
 - Ana Laura Martins
 meta: "Springfield"
-modified_date: 2025-11-10
+modified_date: 2026-06-01
 ---
 
 ## SQL Intermediário
 
-O `COUNT()` conta o número de registros com um valor em um campo.
+O `COUNT()` conta o número de registros com um valor em um campo
 
 **Exemplos:** conta data de nascimento presente na tabela people:
 
